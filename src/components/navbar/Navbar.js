@@ -1,23 +1,27 @@
 import React from 'react'
 import styled from 'styled-components';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 
 
 const NavbarWrapper = styled.div`
 background-color:var(--blue);
 .navbar {
-    max-width:1440px;
-    margin:0 auto;
-    padding:20px 10px;
     display:flex;
     align-items:center;
     justify-content:space-between;
+    max-width:1440px;
+    margin:0 auto;
+    padding:20px 10px;
     &__title {
         display:flex;
         flex-direction:column;
         align-items:center;
         color: var(--white);
         text-shadow: 1px 1px 2px rgba(0,0,0,.4);
+        transition:.3s opacity;
+        &:hover,&:focus {
+            opacity:.6;
+        }
     }
     &__icon {
         font-size:25px;
@@ -65,17 +69,19 @@ const Navbar = () => {
     return (
         <NavbarWrapper>
             <nav className="navbar">
-            <h1 className="navbar__title">
+            <h1>
+                <Link className="navbar__title" to="/">
             <span className="fas fa-hands-helping navbar__icon"></span>
             <span className="navbar__title-text">
                 Suppy
             </span>
+                </Link>
             </h1>
             <ul className="navbar__items">
-                <li className="navbar__item"><NavLink className="navbar__link--active" className="navbar__link" to="/">explore</NavLink></li>
-                <li className="navbar__item"><NavLink className="navbar__link--active" className="navbar__link" to="/my-list">my list</NavLink></li>
-                <li className="navbar__item"><NavLink className="navbar__link--active" className="navbar__link" to="/create">create</NavLink></li>
-                <li className="navbar__item"><NavLink className="navbar__link--active" className="navbar__link" to="/">sign out</NavLink></li>
+                <li className="navbar__item"><NavLink  className="navbar__link" to="/">explore</NavLink></li>
+                <li className="navbar__item"><NavLink  className="navbar__link" to="/my-list">my list</NavLink></li>
+                <li className="navbar__item"><NavLink  className="navbar__link" to="/create">create</NavLink></li>
+                <li className="navbar__item"><NavLink className="navbar__link" to="/">sign out</NavLink></li>
             </ul>
             {/* <ul className="navbar__items">
                 <li className="navbar__item"><NavLink className="navbar__link--active className="navbar__link to="/explore">explore</NavLink></li>

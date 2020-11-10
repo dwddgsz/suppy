@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 const ButtonWrapper = styled.button`
 display:block;
-margin:15px auto;
-padding: 8px 15px;
+margin:${props=>props.primary?'15px auto':'10px auto 0'};
+padding: ${props=>props.primary?'8px 15px':'4px 8px'};
 border:none;
-font-size:2.2rem;
+font-size:${props=>props.primary?'2.2rem':'1.6rem'};
 font-weight:600;
 text-align:center;
 text-shadow: 1px 1px 2px rgba(0,0,0,.4);
@@ -23,10 +23,27 @@ cursor:pointer;
 `
 
 const ButtonStyled = (props) => {
+    const checkForButtonType = () =>{
+        if (props.primary) {
+            return (
+                <ButtonWrapper primary>
+                    {props.children}
+                </ButtonWrapper>
+            )
+        }
+        else {
+            return (
+                <ButtonWrapper>
+                    {props.children}
+                </ButtonWrapper>
+            )
+
+        }
+    }
     return (
-        <ButtonWrapper>
-            {props.children}
-        </ButtonWrapper>
+        <>
+        {checkForButtonType()}
+        </>
     )
 }
 

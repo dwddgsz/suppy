@@ -25,23 +25,26 @@ html {
   font-family: 'Montserrat', sans-serif;
 }
 
-body {
-  background-color: var(--blue);
-}
 
 a {
   text-decoration:none;
   color: var(--black);
 }
 
-ul {
+li {
   list-style:none;
 }
 
-input:focus,button:focus {
+a:focus,input:focus,button:focus {
   outline:none;
 }
 
+button,input {
+  font-family: 'Montserrat', sans-serif;
+}
+button {
+  color: var(--white);
+}
 
 `
 

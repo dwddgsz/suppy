@@ -35,15 +35,18 @@ box-shadow:0px 2px 3px rgba(0,0,0,.4);
     label {
         padding:0 0 10px 5px;
         font-size:1.6rem;
+        text-transform:capitalize;
         color: var(--black);
     }
-    input {
+    textarea,input {
+        max-width:100%;
+        max-height:500px;
         padding:10px;
         border-radius:0;
         border:none;
+        letter-spacing:1px;
         background-color: #f7f7f7;
         color: var(--black);
-        letter-spacing:1px;
         &:focus {
             background-color: #e3e3e3;
         }
