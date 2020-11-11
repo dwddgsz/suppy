@@ -26,14 +26,14 @@ const ButtonStyled = (props) => {
     const checkForButtonType = () =>{
         if (props.primary) {
             return (
-                <ButtonWrapper primary>
+                <ButtonWrapper primary onClick={props.handleOnClick}>
                     {props.children}
                 </ButtonWrapper>
             )
         }
         else {
             return (
-                <ButtonWrapper>
+                <ButtonWrapper onClick={props.handleOnClick}>
                     {props.children}
                 </ButtonWrapper>
             )

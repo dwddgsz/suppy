@@ -45,21 +45,21 @@ padding: 13px 5px 0;
 const CardStyled = (props) => {
     return (
 
-        <CardWrapper>
+        <CardWrapper data-id={props.dataId}>
                 <header className="card__head">
-                    <h5 className="card__title">{props.title}</h5>
+                    <h5 className="card__title">{props.requestTitle}</h5>
                 </header>
                 <ul className="card__items">
                     <li className="card__item">
                         <span className="fas fa-map-marker-alt card__icon card__icon--location"></span>
-    <span className="card__info">{props.location}</span>
+    <span className="card__info">{props.country}, {props.city}</span>
                     </li>
                     <li className="card__item">
                         <span className="fas fa-clock card__icon"></span>
     <span className="card__info">{props.date}</span>
                     </li>
                 </ul>
-    <ButtonStyled>{props.buttonMessage}</ButtonStyled>            
+    <ButtonStyled handleOnClick={props.handleOnClick}>{props.buttonMessege}</ButtonStyled>            
         </CardWrapper>
         
     )
