@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {createGlobalStyle } from 'styled-components';
+import {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 :root {
@@ -50,8 +50,8 @@ button {
 
 ReactDOM.render(
   <>
-  <GlobalStyle />
-    <App />
+        <GlobalStyle />
+        <App/>
     </>,
   document.getElementById('root')
 );
