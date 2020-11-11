@@ -1,5 +1,6 @@
 import React from 'react';
-import {BrowserRouter,Switch,Route} from 'react-router-dom';
+import {Router,Switch,Route} from 'react-router';
+import history from './history/init';
 import Navbar from './components/navbar/Navbar';
 import Explore from './components/explore/Explore';
 import Details from './components/explore/Details';
@@ -20,7 +21,7 @@ margin:0 auto;
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router history={history}>
       <Navbar />
       <AppWrapper>
       <Switch>
@@ -35,7 +36,7 @@ function App() {
       <Route component={NotFound} />
       </Switch>
       </AppWrapper>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
