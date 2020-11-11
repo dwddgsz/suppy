@@ -1,6 +1,10 @@
-import React from 'react';
+import React,{Component} from 'react';
 import TitleStyled from '../styled/TitleStyled';
 import styled from 'styled-components';
+import firebase from '../../firebase/init'
+import ButtonStyled from '../styled/ButtonStyled';
+import {Link} from 'react-router-dom'
+
 
 const DetailsWrapper = styled.div`
 .details__list {
@@ -34,6 +38,7 @@ background-color: var(--blue);
     flex-direction:column;
     align-items:center;
     padding:10px 0;
+    line-height:1.5;
     color: var(--black);
     &-title {
         padding:0 10px 10px;
@@ -50,7 +55,7 @@ background-color: var(--blue);
         font-size:1.3rem;
         padding:0 10px;
         @media screen and (min-width:767px) {
-            max-width:600px;
+            max-width:480px;
         }
     }
 }
@@ -60,35 +65,58 @@ background-color: var(--blue);
 `
 
 
-const Details = () => {
+class Details extends Component {
+    state = {
+    }
+
+     fetchData = () => {
+        firebase
+        .firestore()
+        .collection('requests')
+        .doc(this.props.match.params.id)
+        .get()
+        .then((data)=>{
+           this.setState({...data.data()})
+        })
+    }
+
+    componentDidMount(){
+        this.fetchData()
+    }
+
+    render() {
     return (
         <DetailsWrapper>
             <TitleStyled>Details</TitleStyled>
             <ul className="details__list">
                 <li className="details__title-container"><h3 className="details__title">request</h3></li>
                 <li className="details__field">
-                    <h4 className="details__field-title">title</h4>
-                    <h5 className="details__field-description">shopping</h5>
+                    <h4 className="details__field-title">Title</h4>
+                    <h5 className="details__field-description">{this.state.requestTitle}</h5>
                 </li>
                 <li className="details__field">
                     <h4 className="details__field-title">description</h4>
-                    <h5 className="details__field-description">i need someone to do shopping for me. List: fish,chips,sth,lorem lidsp fadfad ,cx cxcxdsad,dasdasdsa ,zcxfkofnm,vdvsdjincads,dsdddddddddddddddddddddddd Lorem2 ldsadas caifmsakda dsa das daskdoasmfasmkc csa csaoocsmacs  ds</h5>
+                    <h5 className="details__field-description">{this.state.requestDescription}</h5>
                 </li>
             </ul>
 
             <ul className="details__list">
-                <li className="details__title-container"><h3 className="details__title">Location</h3></li>
+                <li className="details__title-container"><h3 className="details__title">Location and Date</h3></li>
                 <li className="details__field">
                     <h4 className="details__field-title">Country</h4>
-                    <h5 className="details__field-description">Poland</h5>
+                    <h5 className="details__field-description">{this.state.country}</h5>
                 </li>
                 <li className="details__field">
                     <h4 className="details__field-title">City</h4>
-                    <h5 className="details__field-description">Warsaw</h5>
+                    <h5 className="details__field-description">{this.state.city}</h5>
                 </li>
                 <li className="details__field">
                     <h4 className="details__field-title">Home Adress</h4>
-                    <h5 className="details__field-description">Wilan 3</h5>
+                    <h5 className="details__field-description">{this.state.homeAdress}</h5>
+                </li>
+                <li className="details__field">
+                    <h4 className="details__field-title">Date</h4>
+                    <h5 className="details__field-description">{this.state.date}</h5>
                 </li>
             </ul>
 
@@ -96,16 +124,19 @@ const Details = () => {
                 <li className="details__title-container"><h3 className="details__title">Contact</h3></li>
                 <li className="details__field">
                     <h4 className="details__field-title">Contact Email</h4>
-                    <h5 className="details__field-description">contact@contact.contact</h5>
+                    <h5 className="details__field-description">{this.state.contactEmail}</h5>
                 </li>
                 <li className="details__field">
                     <h4 className="details__field-title">Contact phone number</h4>
-                    <h5 className="details__field-description">999999999</h5>
+                    <h5 className="details__field-description">{this.state.contactNumber}</h5>
                 </li>
-                
             </ul>
+        <Link to="/">
+        <ButtonStyled primary>Home</ButtonStyled>
+        </Link>
         </DetailsWrapper>
     )
+    }
 }
 
 export default Details
