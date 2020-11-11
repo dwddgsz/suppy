@@ -2,22 +2,53 @@ import React,{Component} from 'react'
 import FormStyled from '../styled/FormStyled';
 import ButtonStyled from '../styled/ButtonStyled';
 import {Link} from 'react-router-dom';
+import firebase from '../../firebase/init';
+import history from '../../history/init'
 
 class SignUp extends Component {
     state = {
         signUpEmail: '',
         signUpPassword: '',
+        emailErrorMessage: '',
+        passwordErrorMessage: '',
     }
 
     handleOnChange = (e) => {
         this.setState({
             [e.target.id]:e.target.value,
+            emailErrorMessage:'',
+            passwordErrorMessage:''
         })
     }
     handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.signUpEmail);
-        console.log(this.state.signUpPassword);
+        firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.signUpEmail,this.state.signUpPassword)
+        .then((data)=>{
+            console.log(data);
+            this.setState({
+                signUpEmail: '',
+                signUpPassword: '',
+                emailErrorMessage: '',
+                passwordErrorMessage: '',
+            })
+            history.push('/');
+        })
+        .catch(error=>{
+            console.log(error.message)
+            switch(error.code){
+                case 'auth/email-already-in-use':
+                this.setState({emailErrorMessage:error.message})
+                break;
+                case 'auth/weak-password':
+                this.setState({passwordErrorMessage:error.message})
+                break;
+                default:
+                return;
+            }
+            console.log(this.state.emailErrorMessage)
+        })
     }
 
     render() {
@@ -30,12 +61,12 @@ class SignUp extends Component {
                 <div className="form__field">
                     <label htmlFor="signUpEmail">Email</label>
                     <input type="email" id="signUpEmail" value={this.state.signUpEmail} onChange={this.handleOnChange}></input>
-                    <p></p>
+    <p>{this.state.emailErrorMessage}</p>
                 </div>
                 <div className="form__field">
                     <label htmlFor="signUpPassword">Password</label>
                     <input type="password" id="signUpPassword" value={this.state.signUpPassword} onChange={this.handleOnChange}></input>
-                    <p></p>
+    <p>{this.state.passwordErrorMessage}</p>
                 </div>
                 <div className="terms">
                 <input type="checkbox"></input>

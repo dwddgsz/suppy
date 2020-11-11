@@ -1,11 +1,13 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {Router,Switch,Route} from 'react-router';
+import firebase from './firebase/init'
 import history from './history/init';
 import Navbar from './components/navbar/Navbar';
 import Explore from './components/explore/Explore';
 import Details from './components/explore/Details';
 import NotFound from './components/problems/NotFound';
 import AuthRequired from './components/problems/AuthRequired'
+import AlreadySignedIn from './components/problems/AlreadySignedIn'
 import MyList from './components/myList/MyList';
 import styled from 'styled-components';
 import SignIn from './components/sign/SignIn'
@@ -18,20 +20,41 @@ margin:0 auto;
 `
 
 
-function App() {
+class App extends Component {
+    state = {
+      isUserSignedIn: false,
+    }
+
+    handleUserStatus = () =>{
+      firebase
+      .auth()
+      .onAuthStateChanged((user)=>{
+        if (user) {
+          this.setState({isUserSignedIn:true})
+        }
+        else {
+          this.setState({isUserSignedIn:false})
+        }
+      })
+    }
+
+    componentDidMount(){
+      this.handleUserStatus();
+    }
+
+  render(){
   return (
     <div className="App">
       <Router history={history}>
-      <Navbar />
+      <Navbar isUserSignedIn={this.state.isUserSignedIn}/>
       <AppWrapper>
       <Switch>
       <Route path="/" exact component={Explore} />
       <Route path="/details/:id" component={Details} />
-      <Route path="/my-list" component={MyList} />
-      <Route path="/create" component={Create} />
-      <Route path="/sign-in" component={SignIn} />
-      <Route path="/sign-up" component={SignUp} />
-      <Route path="/sign-up" component={SignUp} />
+      <Route path="/my-list" component={this.state.isUserSignedIn?MyList:AuthRequired} />
+      <Route path="/create" component={this.state.isUserSignedIn?Create:AuthRequired} />
+      <Route path="/sign-in" component={this.state.isUserSignedIn?AlreadySignedIn:SignIn} />
+      <Route path="/sign-up" component={this.state.isUserSignedIn?AlreadySignedIn:SignUp} />
       <Route path="/auth" component={AuthRequired} />
       <Route component={NotFound} />
       </Switch>
@@ -39,6 +62,7 @@ function App() {
       </Router>
     </div>
   );
+  }
 }
 
 export default App;

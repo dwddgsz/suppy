@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import {NavLink, Link} from 'react-router-dom';
+import history from '../../history/init';
+import firebase from '../../firebase/init'
 
 
 const NavbarWrapper = styled.div`
@@ -62,10 +64,49 @@ background-color:var(--blue);
             opacity:.6;
         }
     }
+    &__item--sign-out {
+            color: var(--white);
+            font-weight:600;
+            transition:opacity .3s;
+            cursor:pointer;
+            &:hover,&:focus {
+            opacity:.6;
+        }
+        }
 }
 `
 
-const Navbar = () => {
+const Navbar = ({isUserSignedIn}) => {
+
+    const handleSignOut = () => {
+        firebase
+        .auth()
+        .signOut()
+        .then(()=>{
+            history.push('/sign-in')
+        })
+    }
+
+    const checkForLinks = () => {
+        if (isUserSignedIn) {
+            return (
+                <>
+                <li className="navbar__item"><NavLink  className="navbar__link" to="/">explore</NavLink></li>
+                <li className="navbar__item"><NavLink  className="navbar__link" to="/my-list">my list</NavLink></li>
+                <li className="navbar__item"><NavLink  className="navbar__link" to="/create">create</NavLink></li>
+                <li className="navbar__item navbar__item--sign-out" onClick={handleSignOut}>sign out</li>
+                </>
+            )
+        } else {
+            return (
+                <>
+                <li className="navbar__item"><NavLink className="navbar__link" to="/explore">explore</NavLink></li>
+                <li className="navbar__item"><NavLink className="navbar__link" to="/sign-in">sign in</NavLink></li>
+                </>
+            )
+        }
+    }
+
     return (
         <NavbarWrapper>
             <nav className="navbar">
@@ -78,10 +119,11 @@ const Navbar = () => {
                 </Link>
             </h1>
             <ul className="navbar__items">
-                <li className="navbar__item"><NavLink  className="navbar__link" to="/">explore</NavLink></li>
+                {/* <li className="navbar__item"><NavLink  className="navbar__link" to="/">explore</NavLink></li>
                 <li className="navbar__item"><NavLink  className="navbar__link" to="/my-list">my list</NavLink></li>
                 <li className="navbar__item"><NavLink  className="navbar__link" to="/create">create</NavLink></li>
-                <li className="navbar__item"><NavLink className="navbar__link" to="/">sign out</NavLink></li>
+                <li className="navbar__item navbar__item--sign-out" onClick={handleSignOut}>sign out</li> */}
+                {checkForLinks()}
             </ul>
             {/* <ul className="navbar__items">
                 <li className="navbar__item"><NavLink className="navbar__link--active className="navbar__link to="/explore">explore</NavLink></li>
