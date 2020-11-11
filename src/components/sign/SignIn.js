@@ -20,6 +20,10 @@ const SignIn = () => {
                     <input type="password" id="password"></input>
                     <p></p>
                 </div>
+                <div className="terms">
+                <input type="checkbox"></input>
+                <p>I've read and I agree to the <span>terms</span></p>
+                </div>  
             <ButtonStyled primary>Confirm</ButtonStyled>
             </form>
             <p className="form__change-text">

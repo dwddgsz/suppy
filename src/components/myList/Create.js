@@ -44,6 +44,11 @@ const Create = () => {
                     <input type="number" id="phone-number"></input>
                     <p></p>
                 </div>
+                            
+            <div className="terms">
+                <input type="checkbox"></input>
+                <p>I've read and I agree to the <span>terms</span></p>
+                </div>                
             <ButtonStyled primary>Add</ButtonStyled>
             </form>
         </FormStyled>

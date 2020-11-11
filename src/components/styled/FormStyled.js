@@ -69,7 +69,26 @@ transition:.3s opacity;
     opacity:.6;
 }
 }
-
+.terms {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    input {
+        margin-right:5px;
+    }
+    p {
+        font-size:1.5rem;
+        color:var(--black);
+        span {
+            color: var(--blue);
+            cursor:pointer;
+            transition:.3s;
+            &:hover,&:focus {
+                opacity:.6;
+            }
+        }
+    }
+}
 ` 
 
 
