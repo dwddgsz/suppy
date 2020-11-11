@@ -100,7 +100,7 @@ const Navbar = ({isUserSignedIn}) => {
         } else {
             return (
                 <>
-                <li className="navbar__item"><NavLink className="navbar__link" to="/explore">explore</NavLink></li>
+                <li className="navbar__item"><NavLink className="navbar__link" to="/">explore</NavLink></li>
                 <li className="navbar__item"><NavLink className="navbar__link" to="/sign-in">sign in</NavLink></li>
                 </>
             )
