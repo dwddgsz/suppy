@@ -26,7 +26,6 @@ class SignIn extends Component {
         .auth()
         .signInWithEmailAndPassword(this.state.signInEmail,this.state.signInPassword)
         .then((data)=>{
-            console.log(data);
             this.setState({
                 signUpEmail: '',
                 signUpPassword: '',

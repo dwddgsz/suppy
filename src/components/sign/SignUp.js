@@ -26,7 +26,6 @@ class SignUp extends Component {
         .auth()
         .createUserWithEmailAndPassword(this.state.signUpEmail,this.state.signUpPassword)
         .then((data)=>{
-            console.log(data);
             this.setState({
                 signUpEmail: '',
                 signUpPassword: '',
@@ -36,7 +35,6 @@ class SignUp extends Component {
             history.push('/');
         })
         .catch(error=>{
-            console.log(error.message)
             switch(error.code){
                 case 'auth/email-already-in-use':
                 this.setState({emailErrorMessage:error.message})
@@ -47,7 +45,6 @@ class SignUp extends Component {
                 default:
                 return;
             }
-            console.log(this.state.emailErrorMessage)
         })
     }
 

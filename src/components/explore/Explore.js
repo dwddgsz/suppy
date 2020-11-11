@@ -28,7 +28,6 @@ class Explore extends Component {
     checkForRender = () => {
         if (this.state.data.length !== 0) {
             return this.state.data.map(element=>{
-                console.log(element)
                 return <CardStyled key={element.id} dataId={element.id} requestTitle={element.requestTitle} date={element.date} country={element.country} city={element.city} buttonMessege="more" handleOnClick={this.handleOnClick}/>
             })
         }
