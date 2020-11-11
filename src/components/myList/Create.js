@@ -1,6 +1,9 @@
 import React,{Component} from 'react'
 import FormStyled from '../styled/FormStyled';
 import ButtonStyled from '../styled/ButtonStyled';
+import firebase from '../../firebase/init'
+import history from '../../history/init'
+
 
 class Create extends Component {
     state = {
@@ -21,13 +24,65 @@ class Create extends Component {
     }
     handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.requestTitle);
-        console.log(this.state.requestDescription);
-        console.log(this.state.country);
-        console.log(this.state.city);
-        console.log(this.state.homeAdress);
-        console.log(this.state.contactEmail);
-        console.log(this.state.contactNumber);
+        const user = firebase.auth().currentUser;
+        const date = new Date();
+        const getMonth = () => {
+            switch(date.getMonth()){
+                case 0:{
+                    return 'January';
+                }
+                case 1:{
+                    return 'February';
+                }
+                case 2:{
+                    return 'March';
+                }
+                case 3:{
+                    return 'April';
+                }
+                case 4:{
+                    return 'May';
+                }
+                case 5:{
+                    return 'June';
+                }
+                case 6:{
+                    return 'July';
+                }
+                case 7:{
+                    return 'August';
+                }
+                case 8:{
+                    return 'September';
+                }
+                case 9:{
+                    return 'October';
+                }
+                case 10:{
+                    return 'November';
+                }
+                case 11:{
+                    return 'December';
+                }
+                default:
+                    return;
+            }
+        }
+        const currentDate = `${date.getDate()} ${getMonth()} ${date.getFullYear()} ${date.getHours()} ${date.getMinutes()}`;
+        firebase.firestore().collection('requests').add({...this.state,userId:user.uid,date:currentDate}).then(()=>{
+            this.setState({
+                requestTitle: '',
+                requestDescription: '',
+                country:'',
+                city:'',
+                homeAdress:'',
+                contactEmail: '',
+                contactNumber:'',
+            })
+        })
+        .then(()=>{
+            history.push('/')
+        })
     }
     
     render(){
@@ -39,7 +94,7 @@ class Create extends Component {
             <form className="form" onSubmit={this.handleOnSubmit}>
                 <div className="form__field">
                     <label htmlFor="requestTitle">request title</label>
-                    <input type="text" id="requestTitle" value={this.state.requestTitle} onChange={this.handleOnChange}></input>
+                    <input type="text" id="requestTitle" maxLength="15" value={this.state.requestTitle} onChange={this.handleOnChange}></input>
                     <p></p>
                 </div>
                 <div className="form__field">
@@ -69,7 +124,7 @@ class Create extends Component {
                 </div>
                 <div className="form__field">
                     <label htmlFor="contactNumber">Contact phone</label>
-                    <input type="number" id="contactNumber" value={this.state.contactNumber} onChange={this.handleOnChange}></input>
+                    <input type="number" id="contactNumber" max="999999999" value={this.state.contactNumber} onChange={this.handleOnChange}></input>
                     <p></p>
                 </div>
                             
