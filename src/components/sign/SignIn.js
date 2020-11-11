@@ -1,23 +1,40 @@
-import React from 'react'
+import React,{Component} from 'react'
 import FormStyled from '../styled/FormStyled';
 import ButtonStyled from '../styled/ButtonStyled';
 import {Link} from 'react-router-dom';
 
-const SignIn = () => {
+class SignIn extends Component {
+    state = {
+        signInEmail:'',
+        signInPassword: '',
+    }
+
+    handleOnChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value,
+        })
+    }
+    handleOnSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state.signInEmail)
+        console.log(this.state.signInPassword)
+    }
+
+    render(){
     return (
         <FormStyled>
              <header className="form__title-container">
             <h2 className="form__title">Sign in</h2>
             </header>
-            <form className="form">
+            <form className="form" onSubmit={this.handleOnSubmit}>
                 <div className="form__field">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email"></input>
+                    <label htmlFor="signInEmail">Email</label>
+                    <input type="email" id="signInEmail" value={this.state.signInEmail} onChange={this.handleOnChange}></input>
                     <p></p>
                 </div>
                 <div className="form__field">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password"></input>
+                    <label htmlFor="signInPassword">Password</label>
+                    <input type="password" id="signInPassword" value={this.state.signInPassword} onChange={this.handleOnChange}></input>
                     <p></p>
                 </div>
                 <div className="terms">
@@ -31,6 +48,7 @@ const SignIn = () => {
             </p>
         </FormStyled>
     )
+    }
 }
 
 export default SignIn
