@@ -55,7 +55,6 @@ class App extends Component {
       <Route path="/create" component={this.state.isUserSignedIn?Create:AuthRequired} />
       <Route path="/sign-in" component={this.state.isUserSignedIn?AlreadySignedIn:SignIn} />
       <Route path="/sign-up" component={this.state.isUserSignedIn?AlreadySignedIn:SignUp} />
-      <Route path="/auth" component={AuthRequired} />
       <Route component={NotFound} />
       </Switch>
       </AppWrapper>
