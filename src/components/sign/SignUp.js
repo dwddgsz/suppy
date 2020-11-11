@@ -65,10 +65,6 @@ class SignUp extends Component {
                     <input type="password" id="signUpPassword" value={this.state.signUpPassword} onChange={this.handleOnChange}></input>
     <p>{this.state.passwordErrorMessage}</p>
                 </div>
-                <div className="terms">
-                <input type="checkbox"></input>
-                <p>I've read and I agree to the <span>terms</span></p>
-                </div>  
             <ButtonStyled primary>Confirm</ButtonStyled>
             </form> 
 

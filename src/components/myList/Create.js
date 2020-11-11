@@ -127,11 +127,7 @@ class Create extends Component {
                     <input type="number" id="contactNumber" max="999999999" value={this.state.contactNumber} onChange={this.handleOnChange}></input>
                     <p></p>
                 </div>
-                            
-            <div className="terms">
-                <input type="checkbox"></input>
-                <p>I've read and I agree to the <span>terms</span></p>
-                </div>                
+                                          
             <ButtonStyled primary>Add</ButtonStyled>
             </form>
         </FormStyled>
