@@ -30,7 +30,7 @@ class Create extends Component {
                 this.setState({errorMessage:'Country and City field can contain only letters'});
                 return;
         }
-        else if ((!this.state.requestTitle) || 
+        if ((!this.state.requestTitle) || 
             (!this.state.requestDescription) || 
             (!this.state.country) || 
             (!this.state.city) || 
@@ -100,7 +100,7 @@ class Create extends Component {
             })
         })
         .then(()=>{
-            history.push('/')
+            history.push('/my-list')
         })
     }
     
