@@ -69,6 +69,21 @@ transition:.3s opacity;
     opacity:.6;
 }
 }
+.form__errorMessage {
+    font-size:1.4rem;
+    text-align:center;
+    color: red;
+}
+.validation-rules {
+    text-align:center;
+    font-size:1.3rem;
+    li {
+        &:first-child{
+            padding-bottom:5px;
+        }
+        padding-bottom:3px;
+    }
+}
 ` 
 
 
