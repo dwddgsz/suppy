@@ -119,16 +119,8 @@ const Navbar = ({isUserSignedIn}) => {
                 </Link>
             </h1>
             <ul className="navbar__items">
-                {/* <li className="navbar__item"><NavLink  className="navbar__link" to="/">explore</NavLink></li>
-                <li className="navbar__item"><NavLink  className="navbar__link" to="/my-list">my list</NavLink></li>
-                <li className="navbar__item"><NavLink  className="navbar__link" to="/create">create</NavLink></li>
-                <li className="navbar__item navbar__item--sign-out" onClick={handleSignOut}>sign out</li> */}
                 {checkForLinks()}
             </ul>
-            {/* <ul className="navbar__items">
-                <li className="navbar__item"><NavLink className="navbar__link--active className="navbar__link to="/explore">explore</NavLink></li>
-                <li className="navbar__item"><NavLink className="navbar__link--active className="navbar__link to="/sign-in">sign in</NavLink></li>
-            </ul> */}
             </nav>
         </NavbarWrapper>
     )
