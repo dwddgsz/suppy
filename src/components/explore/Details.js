@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import TitleStyled from '../styled/TitleStyled';
-import styled from 'styled-components';
-import firebase from '../../firebase/init'
-import ButtonStyled from '../styled/ButtonStyled';
 import {Link} from 'react-router-dom'
+import styled from 'styled-components';
+import TitleStyled from '../styled/TitleStyled';
+import ButtonStyled from '../styled/ButtonStyled';
+import firebase from '../../firebase/init'
 
 
 const DetailsWrapper = styled.div`
@@ -84,58 +84,83 @@ class Details extends Component {
         this.fetchData()
     }
 
+    checkForEmptyObject = (obj) => {
+            for(let key in obj) {
+                if(obj.hasOwnProperty(key))
+                    return false;
+            }
+            return true;
+    }
+
+    checkForContent = () => {
+        if (this.checkForEmptyObject(this.state)) {
+            return (
+                <TitleStyled>Request not found</TitleStyled>
+            )
+        } else {
+            return (
+                <DetailsWrapper>
+                    <TitleStyled>Details</TitleStyled>
+                    <ul className="details__list">
+                        <li className="details__title-container"><h3 className="details__title">request</h3></li>
+                        <li className="details__field">
+                            <h4 className="details__field-title">Title</h4>
+                            <h5 className="details__field-description">{this.state.requestTitle}</h5>
+                        </li>
+                        <li className="details__field">
+                            <h4 className="details__field-title">description</h4>
+                            <h5 className="details__field-description">{this.state.requestDescription}</h5>
+                        </li>
+                    </ul>
+        
+                    <ul className="details__list">
+                        <li className="details__title-container"><h3 className="details__title">Location and Date</h3></li>
+                        <li className="details__field">
+                            <h4 className="details__field-title">Country</h4>
+                            <h5 className="details__field-description">{this.state.country}</h5>
+                        </li>
+                        <li className="details__field">
+                            <h4 className="details__field-title">City</h4>
+                            <h5 className="details__field-description">{this.state.city}</h5>
+                        </li>
+                        <li className="details__field">
+                            <h4 className="details__field-title">Home Adress</h4>
+                            <h5 className="details__field-description">{this.state.homeAdress}</h5>
+                        </li>
+                        <li className="details__field">
+                            <h4 className="details__field-title">Date</h4>
+                            <h5 className="details__field-description">{this.state.date}</h5>
+                        </li>
+                    </ul>
+        
+                    <ul className="details__list">
+                        <li className="details__title-container"><h3 className="details__title">Contact</h3></li>
+                        <li className="details__field">
+                            <h4 className="details__field-title">Contact Email</h4>
+                            <h5 className="details__field-description">{this.state.contactEmail}</h5>
+                        </li>
+                        <li className="details__field">
+                            <h4 className="details__field-title">Contact phone number</h4>
+                            <h5 className="details__field-description">{this.state.contactNumber}</h5>
+                        </li>
+                    </ul>
+                <Link to="/">
+                <ButtonStyled primary>Home</ButtonStyled>
+                </Link>
+                </DetailsWrapper>
+            )
+        }
+    }
+    
     render() {
-    return (
-        <DetailsWrapper>
-            <TitleStyled>Details</TitleStyled>
-            <ul className="details__list">
-                <li className="details__title-container"><h3 className="details__title">request</h3></li>
-                <li className="details__field">
-                    <h4 className="details__field-title">Title</h4>
-                    <h5 className="details__field-description">{this.state.requestTitle}</h5>
-                </li>
-                <li className="details__field">
-                    <h4 className="details__field-title">description</h4>
-                    <h5 className="details__field-description">{this.state.requestDescription}</h5>
-                </li>
-            </ul>
+    
+        return (
+            <>
+            {this.checkForContent()}
+            </>
+            )   
+            
 
-            <ul className="details__list">
-                <li className="details__title-container"><h3 className="details__title">Location and Date</h3></li>
-                <li className="details__field">
-                    <h4 className="details__field-title">Country</h4>
-                    <h5 className="details__field-description">{this.state.country}</h5>
-                </li>
-                <li className="details__field">
-                    <h4 className="details__field-title">City</h4>
-                    <h5 className="details__field-description">{this.state.city}</h5>
-                </li>
-                <li className="details__field">
-                    <h4 className="details__field-title">Home Adress</h4>
-                    <h5 className="details__field-description">{this.state.homeAdress}</h5>
-                </li>
-                <li className="details__field">
-                    <h4 className="details__field-title">Date</h4>
-                    <h5 className="details__field-description">{this.state.date}</h5>
-                </li>
-            </ul>
-
-            <ul className="details__list">
-                <li className="details__title-container"><h3 className="details__title">Contact</h3></li>
-                <li className="details__field">
-                    <h4 className="details__field-title">Contact Email</h4>
-                    <h5 className="details__field-description">{this.state.contactEmail}</h5>
-                </li>
-                <li className="details__field">
-                    <h4 className="details__field-title">Contact phone number</h4>
-                    <h5 className="details__field-description">{this.state.contactNumber}</h5>
-                </li>
-            </ul>
-        <Link to="/">
-        <ButtonStyled primary>Home</ButtonStyled>
-        </Link>
-        </DetailsWrapper>
-    )
     }
 }
 
