@@ -4,7 +4,6 @@ import ListStyled from '../styled/ListStyled';
 import TitleStyled from '../styled/TitleStyled';
 import firebase from '../../firebase/init';
 import {firebaseLooper} from '../../firebase/firestoreLooper';
-import history from '../../history/init'
 
 
 class MyList extends Component{
@@ -18,7 +17,6 @@ class MyList extends Component{
         firebase
         .firestore()
         .collection('requests')
-        .orderBy('createdAt','desc')
         .where('userId','==',currentUserId)
         .get()
         .then(snapshot=>{
