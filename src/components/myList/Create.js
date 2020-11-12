@@ -20,10 +20,27 @@ class Create extends Component {
     handleOnChange = (e) =>{
         this.setState({
             [e.target.id]: e.target.value,
+            errorMessage:''
         })
     }
     handleOnSubmit = (e) => {
         e.preventDefault();
+        const letters = /^[A-Za-z]+$/;
+        if ((!this.state.country.match(letters)) ||  (!this.state.city.match(letters))) {
+                this.setState({errorMessage:'Country and City field can contain only letters'});
+                return;
+        }
+        else if ((!this.state.requestTitle) || 
+            (!this.state.requestDescription) || 
+            (!this.state.country) || 
+            (!this.state.city) || 
+            (!this.state.homeAdress) || 
+            (!this.state.contactEmail) || 
+            (!this.state.contactNumber)){
+                this.setState({errorMessage:`Field can't be empty`})
+                return;
+
+        }
         const user = firebase.auth().currentUser;
         const date = new Date();
         const getMonth = () => {
@@ -68,8 +85,9 @@ class Create extends Component {
                     return;
             }
         }
-        const currentDate = `${date.getDate()} ${getMonth()} ${date.getFullYear()} ${date.getHours()} ${date.getMinutes()}`;
-        firebase.firestore().collection('requests').add({...this.state,userId:user.uid,date:currentDate}).then(()=>{
+        const currentDate = `${date.getDate()} ${getMonth()} ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+        const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+        firebase.firestore().collection('requests').add({...this.state,userId:user.uid,date:currentDate,createdAt:timestamp()}).then(()=>{
             this.setState({
                 requestTitle: '',
                 requestDescription: '',
@@ -78,6 +96,7 @@ class Create extends Component {
                 homeAdress:'',
                 contactEmail: '',
                 contactNumber:'',
+                errorMessage: '',
             })
         })
         .then(()=>{
@@ -124,10 +143,10 @@ class Create extends Component {
                 </div>
                 <div className="form__field">
                     <label htmlFor="contactNumber">Contact phone</label>
-                    <input type="number" id="contactNumber" max="999999999" value={this.state.contactNumber} onChange={this.handleOnChange}></input>
+                    <input type="number" id="contactNumber" min="100000000" max="999999999" value={this.state.contactNumber} onChange={this.handleOnChange}></input>
                     <p></p>
                 </div>
-                                          
+    <p className="form__errorMessage">{this.state.errorMessage}</p>                           
             <ButtonStyled primary>Add</ButtonStyled>
             </form>
         </FormStyled>

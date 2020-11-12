@@ -10,18 +10,23 @@ class SignUp extends Component {
         signUpEmail: '',
         signUpPassword: '',
         emailErrorMessage: '',
-        passwordErrorMessage: '',
+        passwordError:false,
     }
 
     handleOnChange = (e) => {
         this.setState({
             [e.target.id]:e.target.value,
             emailErrorMessage:'',
-            passwordErrorMessage:''
+            passwordError:false,
         })
     }
     handleOnSubmit = (e) => {
         e.preventDefault();
+        const regex = /^((?!.*[\s])(?=.*[A-Z])(?=.*\d).{8,15})/
+        if (!this.state.signUpPassword.match(regex)) {
+            this.setState({passwordError:true})
+            return;
+        }
         firebase
         .auth()
         .createUserWithEmailAndPassword(this.state.signUpEmail,this.state.signUpPassword)
@@ -38,9 +43,6 @@ class SignUp extends Component {
             switch(error.code){
                 case 'auth/email-already-in-use':
                 this.setState({emailErrorMessage:error.message})
-                break;
-                case 'auth/weak-password':
-                this.setState({passwordErrorMessage:error.message})
                 break;
                 default:
                 return;
@@ -65,6 +67,17 @@ class SignUp extends Component {
                     <input type="password" id="signUpPassword" value={this.state.signUpPassword} onChange={this.handleOnChange}></input>
     <p>{this.state.passwordErrorMessage}</p>
                 </div>
+                {this.state.passwordError?
+                (<ul className="validation-rules">
+                    <li>Password:</li>
+                    <li>minimun length is 8 characters</li>
+                    <li>maximum length is 15 characters</li>
+                    <li>must at least one capital letter</li>
+                    <li>must contain at least one digit</li>
+                    <li>shall not contain white spaces</li>
+                </ul>)
+                :
+                null}
             <ButtonStyled primary>Confirm</ButtonStyled>
             </form> 
 
