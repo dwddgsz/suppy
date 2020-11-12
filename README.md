@@ -13,7 +13,7 @@ so someone else can help him.
 <p float="left">
 <img src="designs/form-sign-in.png" width="300" >
 &nbsp;
-<img src="designs/form-sign-up" width="300" >
+<img src="designs/form-sign-up.png" width="300" >
 </p>
 
 
@@ -26,7 +26,7 @@ so someone else can help him.
 
 
 ### MyList:
-<img src="designs/my-list.png.png" width="600" >
+<img src="designs/my-list.png" width="600" >
 <img src="designs/my-list-empty.png" width="600">
 
 
