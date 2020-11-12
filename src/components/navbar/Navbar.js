@@ -13,7 +13,7 @@ background-color:var(--blue);
     justify-content:space-between;
     max-width:1440px;
     margin:0 auto;
-    padding:20px 10px;
+    padding:20px 60px;
     &__title {
         display:flex;
         flex-direction:column;
