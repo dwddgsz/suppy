@@ -18,6 +18,7 @@ class MyList extends Component{
         firebase
         .firestore()
         .collection('requests')
+        .orderBy('createdAt','desc')
         .where('userId','==',currentUserId)
         .get()
         .then(snapshot=>{
@@ -45,7 +46,7 @@ class MyList extends Component{
         .doc(currentElementId)
         .delete()
         .then(()=>{
-           window.location.reload(false)
+            this.fetchData()
         })
     }
 

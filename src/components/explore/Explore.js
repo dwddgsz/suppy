@@ -15,6 +15,7 @@ class Explore extends Component {
         firebase
         .firestore()
         .collection('requests')
+        .orderBy('createdAt','desc')
         .get()
         .then(snapshot=>{
             this.setState({data:firebaseLooper(snapshot)})
