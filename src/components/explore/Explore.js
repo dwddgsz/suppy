@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import CardStyled from '../styled/CardStyled';
 import ListStyled from '../styled/ListStyled';
 import TitleStyled from '../styled/TitleStyled';
+import history from '../../history/init';
 import firebase from '../../firebase/init';
 import {firebaseLooper} from '../../firebase/firestoreLooper';
-import history from '../../history/init';
 
 class Explore extends Component {
     state = {

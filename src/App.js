@@ -1,18 +1,18 @@
 import React,{Component} from 'react';
 import {Router,Switch,Route} from 'react-router';
-import firebase from './firebase/init'
-import history from './history/init';
+import styled from 'styled-components';
 import Navbar from './components/navbar/Navbar';
+import SignUp from './components/sign/SignUp'
+import SignIn from './components/sign/SignIn'
 import Explore from './components/explore/Explore';
 import Details from './components/explore/Details';
+import MyList from './components/myList/MyList';
+import Create from './components/myList/Create';
 import NotFound from './components/problems/NotFound';
 import AuthRequired from './components/problems/AuthRequired'
 import AlreadySignedIn from './components/problems/AlreadySignedIn'
-import MyList from './components/myList/MyList';
-import styled from 'styled-components';
-import SignIn from './components/sign/SignIn'
-import SignUp from './components/sign/SignUp'
-import Create from './components/myList/Create';
+import history from './history/init';
+import firebase from './firebase/init';
 
 const AppWrapper = styled.div`
 max-width:1440px;

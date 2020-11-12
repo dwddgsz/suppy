@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
+import {Link} from 'react-router-dom';
 import FormStyled from '../styled/FormStyled';
 import ButtonStyled from '../styled/ButtonStyled';
-import {Link} from 'react-router-dom';
 import firebase from '../../firebase/init';
 import history from '../../history/init'
 

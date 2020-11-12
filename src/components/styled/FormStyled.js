@@ -1,7 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import ButtonStyled from './ButtonStyled'
-
 
 const FormWrapper = styled.div`
 width:300px;
@@ -92,22 +90,6 @@ const FormStyled = (props) => {
     return (
         <FormWrapper>
             {props.children}
-            {/* <div className="form__title-container">
-            <h2 className="form__title">Sign in</h2>
-            </div>
-            <form className="form">
-                <div className="form__field">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email"></input>
-                    <p>error</p>
-                </div>
-                <div className="form__field">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password"></input>
-                    <p>error</p>
-                </div>
-            <ButtonStyled primary>Confirm</ButtonStyled>
-            </form> */}
         </FormWrapper>
     )
 }

@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
 import FormStyled from '../styled/FormStyled';
 import ButtonStyled from '../styled/ButtonStyled';
-import firebase from '../../firebase/init'
 import history from '../../history/init'
+import firebase from '../../firebase/init'
 
 
 class Create extends Component {
