@@ -50,7 +50,7 @@ class App extends Component {
       <AppWrapper>
       <Switch>
       <Route path="/" exact component={Explore} />
-      <Route path="/details/:id" component={Details} />
+      <Route path="/details/:id" component={this.state.isUserSignedIn?Details:AuthRequired} />
       <Route path="/my-list" component={this.state.isUserSignedIn?MyList:AuthRequired} />
       <Route path="/create" component={this.state.isUserSignedIn?Create:AuthRequired} />
       <Route path="/sign-in" component={this.state.isUserSignedIn?AlreadySignedIn:SignIn} />
