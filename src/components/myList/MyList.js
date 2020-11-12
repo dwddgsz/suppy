@@ -35,7 +35,7 @@ class MyList extends Component{
             })
         }
         else {
-            null
+           return null
         }
     }
 

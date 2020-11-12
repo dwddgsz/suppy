@@ -33,7 +33,7 @@ class Explore extends Component {
             })
         }
         else {
-            null
+            return null
         }
     }
 
