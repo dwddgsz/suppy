@@ -95,7 +95,10 @@ class Details extends Component {
     checkForContent = () => {
         if (this.checkForEmptyObject(this.state)) {
             return (
+                <>
                 <TitleStyled>Request not found</TitleStyled>
+                <Link to='/'><ButtonStyled primary>HOME</ButtonStyled></Link>
+                </>
             )
         } else {
             return (
