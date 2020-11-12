@@ -34,6 +34,9 @@ class MyList extends Component{
                 return <CardStyled key={element.id} dataId={element.id} requestTitle={element.requestTitle} date={element.date} country={element.country} city={element.city} buttonMessege="done" handleOnClick={this.handleOnClick}/>
             })
         }
+        else {
+            null
+        }
     }
 
     handleOnClick =(e) =>{
