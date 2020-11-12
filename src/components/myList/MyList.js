@@ -53,7 +53,7 @@ class MyList extends Component{
     render(){
         return (
         <>
-        <TitleStyled>my list</TitleStyled>
+        <TitleStyled>{this.state.data.length ===0? 'Your list is empty' : 'My list'}</TitleStyled>
         <ListStyled>
             {this.checkForRender()}
         </ListStyled>

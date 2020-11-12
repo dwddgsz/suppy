@@ -42,7 +42,7 @@ class Explore extends Component {
     render(){
     return (
         <>
-        <TitleStyled>explore</TitleStyled>
+        <TitleStyled>{this.state.data.length ===0? 'Explore section is currently empty' : 'Explore'}</TitleStyled>
         <ListStyled>
         {this.checkForRender()}
         </ListStyled>
