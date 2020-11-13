@@ -3,9 +3,10 @@
 
 ## Goal:
 
-
 This website was created for people that are infected with COVID-19 virus. If user needs something that he can't complete, he may create request, 
 so someone else can help him.
+
+[live](https://wonderful-shaw-021d74.netlify.app)
 
 ## Views:
 
