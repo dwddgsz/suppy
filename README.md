@@ -6,8 +6,6 @@
 This website was created for people that are infected with COVID-19 virus. If user needs something that he can't complete, he may create request, 
 so someone else can help him.
 
-[live](https://romantic-chandrasekhar-544279.netlify.app)
-
 ## Views:
 
 ### Sign In/Sign Up 
